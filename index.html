@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="PhoneGuard captures unauthorized unlock attempts and keeps evidence private on your device.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), clipboard-read=(), clipboard-write=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), serial=(), usb=(), xr-spatial-tracking=()">
+    <title>PhoneGuard - Your phone knows who unlocked it.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="favicon-circle.png" as="image" fetchpriority="high">
+    <link rel="icon" type="image/png" href="favicon-circle.png" sizes="any">
+    <link rel="apple-touch-icon" href="favicon-circle.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Modal 1: Initial Donation -->
+    <div id="modal1" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title">Support the Creator</h2>
+            <p class="modal-text">To keep this project alive and ad-free, consider donating to the admin. Your support
+                means the world and helps us continue delivering premium experiences.</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="btn-donate-1">Donate Now</button>
+                <button class="btn btn-outline btn-skip" id="btn-skip-1">Skip and leave the admin to die</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Second Confirmation (Guilt Trip) -->
+    <div id="modal2" class="modal-overlay">
+        <div class="modal-content">
+            <img src="skip.jpeg" alt="Are you sure?" class="skip-image">
+            <h2 class="modal-title">Wait, really?</h2>
+            <p class="modal-text">You really don't wanna donate and support the hard work behind this?</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="btn-donate-2">Fine, I'll Donate</button>
+                <button class="btn btn-outline" id="btn-skip-2">I will not donate</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content" class="main-container hidden">
+        <!-- Hero Section -->
+        <header class="section hero fade-in">
+            <div class="hero-content">
+                <img src="https://res.cloudinary.com/db1tiugho/image/upload/f_auto,q_auto/Picsart_26-03-24_18-20-01-448_qxsuld.png"
+                    alt="Anime Character" class="hero-character floating-anim">
+                <h1 class="headline">Your phone knows who unlocked it.</h1>
+                <p class="subheading">Automatically captures intruders using your front camera every time your phone is
+                    accessed.</p>
+
+                <div class="cta-group">
+                    <button class="btn btn-primary" id="btn-install">
+                        <span>Install PhoneGuard 🔒</span>
+                    </button>
+                    <button class="btn btn-outline" id="btn-demo">
+                        <span>See it in action 👀</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Visual Demo Section -->
+        <section id="demo-section" class="section demo fade-in">
+            <div class="demo-container">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="camera-notch"></div>
+                        <div class="app-ui">
+                            <p class="ui-time">03:14 AM</p>
+                            <div class="ui-capture-box">
+                                <span class="crosshair">+</span>
+                                <p>Intruder Detected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="demo-caption">Real-time intruder capture. No cloud. 100% on-device.</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section features fade-in">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h4l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3>Auto Capture</h3>
+                    <p>Captures every unlock attempt instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+                            <path d="M8 11V8a4 4 0 1 1 8 0v3"></path>
+                        </svg>
+                    </div>
+                    <h3>Local Storage</h3>
+                    <p>No cloud, fully private data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3l7 3v6c0 5-3.2 8.8-7 10-3.8-1.2-7-5-7-10V6l7-3z"></path>
+                        </svg>
+                    </div>
+                    <h3>Smart Lock Gate</h3>
+                    <p>Blocks access until proper authentication.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                    </div>
+                    <h3>Session History</h3>
+                    <p>Detailed logs of all intrusion attempts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="section social-proof fade-in">
+            <h2 class="social-headline">🔥 40K+ people already checked this out</h2>
+            <div class="comments-list">
+                <div class="comment-item">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="@tech_ninja" class="avatar">
+                    <div class="comment-content">
+                        <h4>@tech_ninja</h4>
+                        <p>Finally, a privacy app that doesn't send my face to the cloud. 💯</p>
+                    </div>
+                </div>
+                <div class="comment-item">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="@sarah_codes" class="avatar">
+                    <div class="comment-content">
+                        <h4>@sarah_codes</h4>
+                        <p>Caught my brother trying to guess my pin lmaooo 😭</p>
+                    </div>
+                </div>
+                <div class="comment-item">
+                    <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="@daily_apps" class="avatar">
+                    <div class="comment-content">
+                        <h4>@daily_apps</h4>
+                        <p>The UI is incredibly clean. Must have for Android.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <p>Made by Rishav | Erro_rcodee</p>
+            <a href="https://www.instagram.com/erro_rcodee/" target="_blank" rel="noopener noreferrer" class="ig-link">@erro_rcodee on Instagram</a>
+        </footer>
+
+        <!-- Floating Donate Button -->
+        <button class="btn btn-support floating-donate" id="btn-support">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M20 12c0 5-3.6 8.8-8 10-4.4-1.2-8-5-8-10V6l8-3 8 3z"></path><path d="M9 12c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3"></path><path d="M12 15v2"></path></svg>
+            Donate
+        </button>
+
+        <!-- Floating Chatbot Button -->
+        <button class="floating-chat" id="btn-chat" aria-label="Open FAQ">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="22" height="22"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        </button>
+
+        <!-- Chatbot Window -->
+        <div id="chat-window" class="chat-window">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <h3>PhoneGuard Assistant</h3>
+                    <p>Quick answers while you browse</p>
+                </div>
+                <button id="btn-close-chat" class="btn-close-chat" aria-label="Close">
+                    <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+
+            <div class="chat-scroll-area" id="chat-messages">
+                <!-- Messages injected via JS -->
+            </div>
+
+            <div class="chat-options" id="chat-options">
+                <!-- Options injected via JS -->
+            </div>
+
+            <div class="chat-bottom-actions hidden" id="chat-bottom-actions">
+                <div class="chat-bottom-row">
+                    <button class="chat-action-btn" id="btn-another">Another Question</button>
+                    <button class="chat-action-btn" id="btn-go-back">Go Back</button>
+                    <button class="chat-action-btn" id="btn-clear">Clear Chat</button>
+                </div>
+                <button class="chat-primary-btn" id="btn-continue">Get PhoneGuard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fun Popup Modal -->
+    <div id="support-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title">Buy me a coffee? ☕</h2>
+            <p class="modal-text">Servers are cheap, but my caffeine addiction isn't. Fuel the late-night coding
+                sessions!</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="btn-donate-final">Hell yes, take my money 💸</button>
+                <button class="btn btn-outline" id="btn-close-modal">Maybe next time</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
